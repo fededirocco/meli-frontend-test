@@ -3,9 +3,9 @@ import {render} from 'react-dom';
 
 import 'bootstrap/dist/css/bootstrap.css'
 
-import App from './components/app.jsx';
+import SearchBar from './components/searchBar.jsx';
 
 render(
-  <App />
-  , document.getElementById('app')
+  <SearchBar />,
+  document.getElementById('app')
 );
