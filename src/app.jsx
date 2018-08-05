@@ -1,31 +1,47 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import SearchBar from './components/searchBar.jsx';
+import SearchList from './components/searchList.jsx';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      search: '',
-      query: ''
+      search: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(search) {
-    this.setState({ search: search, query: `/items?search=${search}` });
-    console.log(this);
+    this.setState({ search: search });
   }
 
   render() {
-    return (
-      <SearchBar
-        search={this.state.search}
-        onSubmit={this.handleSubmit}
-      />
-    )
+
+    if (this.state.search == '') {
+      return (
+        <div>
+          <SearchBar
+            search={this.state.search}
+            onSubmit={this.handleSubmit}
+          />
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <SearchBar
+            search={this.state.search}
+            onSubmit={this.handleSubmit}
+          />
+          <SearchList
+            search={this.state.search}
+          />
+        </div>
+      )
+    }
   }
 }
 
