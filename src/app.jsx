@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 import SearchBar from './components/searchBar.jsx';
 import SearchList from './components/searchList.jsx';
 
+//import ItemDetail from './components/itemDetail.jsx';
+
 class App extends Component {
 
   constructor(props) {
@@ -42,6 +44,10 @@ class App extends Component {
         </div>
       )
     }
+    // return(
+    //   <ItemDetail
+    //     id='MLA653282516'
+    //   />);
   }
 }
 

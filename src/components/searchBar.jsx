@@ -3,12 +3,13 @@ import { render } from 'react-dom';
 
 //const MLLogo = require('../img/Logo_ML.png');
 //const SearchIcon = require('../img/ic_Search.png');
+//import MLLogo from './img/Logo_ML.png';
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
     this.state = { value: this.props.search };
-    
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }

@@ -25,7 +25,9 @@ class Item extends Component {
           </div>
           <div className='col-md-6'>
             <p>{this.state.price}</p>
-            <p>{this.state.title}</p>
+            <a href=''>
+              <p>{this.state.title}</p>
+            </a>
           </div>
           <div className='col-md-2'>
             <p>{this.state.address}</p>
