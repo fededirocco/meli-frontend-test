@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { Link } from 'react-router-dom';
 
 class Item extends Component {
   constructor(props) {
@@ -25,9 +26,7 @@ class Item extends Component {
           </div>
           <div className='col-md-6'>
             <p>{this.state.price}</p>
-            <a href=''>
-              <p>{this.state.title}</p>
-            </a>
+            <Link to={`/items/${this.state.id}`}>{this.state.title}</Link>
           </div>
           <div className='col-md-2'>
             <p>{this.state.address}</p>

@@ -34,16 +34,12 @@ class App extends Component {
         )}/>
         <Switch>
           <Route exact path="/" render= { null } />
-          <Route path='/items' component={ SearchList } />
-          <Route exact path='/items/:id' component={ ItemDetail } />
+          <Route exact path='/items' component={ SearchList } />
+          <Route path='/items/:id' component={ ItemDetail } />
           <Route path='*' component={ NotFound } />
         </Switch>
       </div>
     );
-    // return(
-    //   <ItemDetail
-    //     id='MLA653282516'
-    //   />);
   }
 }
 

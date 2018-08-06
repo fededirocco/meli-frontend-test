@@ -5,20 +5,20 @@ class ItemDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.id,
+      id: this.props.match.params.id,
       item: '',
       description: ''
     };
-    console.log('entro');
+
     this.getItemData = this.getItemData.bind(this);
   }
 
   componentDidMount() {
-    console.log('entro');
     this.getItemData();
   }
 
   getItemData() {
+    console.log(this.state.id);
     fetch('https://api.mercadolibre.com/items/' + this.state.id)
     .then((response) => {
       return response.json()

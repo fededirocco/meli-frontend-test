@@ -7,7 +7,7 @@ class SearchList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: this.props.search,
+      search: '',
       categories: [],
       items: [],
     };
@@ -16,22 +16,18 @@ class SearchList extends Component {
   }
 
   componentDidMount() {
-    console.log('entro0');
-    console.log(this.props.location.search.split("=")[1]);
-    this.setState({ 'search': this.props.location.search.split("=")[1] }, () => {
+    var searchQuery = this.props.location.search.split("=")[1];
+
+    this.setState({ 'search': (searchQuery != null) ? searchQuery : '' }, () => {
       this.getItems();
     });
   }
 
   componentDidUpdate(prevProps) {
-    
+
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('entro2');
-    console.log(this.state.search);
-    console.log(nextProps.location.search.split("=")[1]);
-
     var searchQuery = nextProps.location.search.split("=")[1];
 
     if (searchQuery != this.state.search) {
