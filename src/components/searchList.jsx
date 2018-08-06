@@ -20,7 +20,11 @@ class SearchList extends Component {
   }
 
   componentDidUpdate(prevProps) {
-
+    if (nextProps.location.search != this.props.location.search) {
+      this.setState({ 'search': this.props.location.search }, () => {
+        this.getItems();
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
