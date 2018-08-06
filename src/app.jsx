@@ -6,6 +6,10 @@ import SearchBar from './components/searchBar.jsx';
 import SearchList from './components/searchList.jsx';
 import ItemDetail from './components/itemDetail.jsx';
 
+const NotFound = () => (
+  <h1>404.. This page is not found!</h1>
+);
+
 class App extends Component {
 
   constructor(props) {
@@ -19,19 +23,20 @@ class App extends Component {
 
   handleSubmit(search) {
     this.setState({ search: search });
-    console.log(this);
     this.props.history.push(`/items?search=${search}`);
   }
 
   render() {
     return (
       <div>
+        <Route path="/" render={(props) => (
+          <SearchBar search={this.state.search} onSubmit={this.handleSubmit} />
+        )}/>
         <Switch>
-          <Route path="/" render={(props) => (
-            <SearchBar search={this.state.search} onSubmit={this.handleSubmit} />
-          )}/>
-          <Route path='/items?search=:search' component={ SearchList } />
-          <Route path='/items/:id' component={ ItemDetail } />
+          <Route exact path="/" render= { null } />
+          <Route path='/items' component={ SearchList } />
+          <Route exact path='/items/:id' component={ ItemDetail } />
+          <Route path='*' component={ NotFound } />
         </Switch>
       </div>
     );

@@ -10,6 +10,7 @@ class SearchBar extends Component {
     super(props);
     this.state = { value: this.props.search };
 
+    console.log('entro');
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }

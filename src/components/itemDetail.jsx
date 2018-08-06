@@ -9,11 +9,12 @@ class ItemDetail extends Component {
       item: '',
       description: ''
     };
-
+    console.log('entro');
     this.getItemData = this.getItemData.bind(this);
   }
 
   componentDidMount() {
+    console.log('entro');
     this.getItemData();
   }
 

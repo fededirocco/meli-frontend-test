@@ -16,20 +16,26 @@ class SearchList extends Component {
   }
 
   componentDidMount() {
-    this.getItems();
+    console.log('entro0');
+    console.log(this.props.location.search.split("=")[1]);
+    this.setState({ 'search': this.props.location.search.split("=")[1] }, () => {
+      this.getItems();
+    });
   }
 
   componentDidUpdate(prevProps) {
-    if (nextProps.location.search != this.props.location.search) {
-      this.setState({ 'search': this.props.location.search }, () => {
-        this.getItems();
-      });
-    }
+    
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.search != this.state.search) {
-      this.setState({ 'search': nextProps.search }, () => {
+    console.log('entro2');
+    console.log(this.state.search);
+    console.log(nextProps.location.search.split("=")[1]);
+
+    var searchQuery = nextProps.location.search.split("=")[1];
+
+    if (searchQuery != this.state.search) {
+      this.setState({ 'search': searchQuery }, () => {
         this.getItems();
       });
     }
