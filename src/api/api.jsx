@@ -8,7 +8,7 @@ router.get('/items/:id', function(req, res) {
 	request('https://api.mercadolibre.com/items/' + req.params.id, function (error, response, body) {
 		var item = JSON.parse(response.body);
 
-		request('https://api.mercadolibre.com/items/' + req.params.id + '/description', function (error, response, body) {
+		request('https://api.mercadolibre.com/items/' + item.id + '/description', function (error, response, body) {
       var itemDetails = detailItem.setItemDetails(item, JSON.parse(response.body));
 		 	res.json(itemDetails);
 		});

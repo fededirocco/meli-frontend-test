@@ -43,7 +43,7 @@ class SearchList extends Component {
       return response.json()
     })
     .then((data) => {
-      this.setState({ items: data.items.slice(0,4) });
+      this.setState({ items: data.items });
     })
     .catch((err) => {
       console.log('Response error:' + err.message);
