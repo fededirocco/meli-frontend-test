@@ -43,7 +43,10 @@ class SearchList extends Component {
       return response.json()
     })
     .then((data) => {
-      this.setState({ items: data.items });
+      this.setState({
+        items: data.items,
+        categories: data.categories
+      });
     })
     .catch((err) => {
       console.log('Response error:' + err.message);
@@ -60,7 +63,8 @@ class SearchList extends Component {
 
       return (
         <div className='container'>
-          <div className='row justify-content-center' style={{backgroundColor: '#EEEEEE'}}>
+          <div className='row category-item'>Categorias: {this.state.categories} </div>
+          <div className='row justify-content-center backgroundWhite'>
             <div className='col-md-10'>
               {listItems}
             </div>
