@@ -19,7 +19,7 @@ class SearchBar extends Component {
   }
 
   handleSubmit(e) {
-    alert('A search text was submitted: ' + this.state.value);
+    //alert('A search text was submitted: ' + this.state.value);
     e.preventDefault();
     this.props.onSubmit(this.state.value);
   }

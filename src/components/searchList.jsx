@@ -38,13 +38,12 @@ class SearchList extends Component {
   }
 
   getItems() {
-    //fetch(`/api/items?q=:${this.state.search}`)
-    fetch(`https://api.mercadolibre.com/sites/MLA/search?q=​:${this.state.search}`)
+    fetch(`/api/items?q=:${this.state.search}`)
     .then((response) => {
       return response.json()
     })
     .then((data) => {
-      this.setState({ items: data.results.slice(0,4) });
+      this.setState({ items: data.items.slice(0,4) });
     })
     .catch((err) => {
       console.log('Response error:' + err.message);

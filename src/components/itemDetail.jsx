@@ -7,7 +7,8 @@ class ItemDetail extends Component {
     this.state = {
       id: this.props.match.params.id,
       item: '',
-      description: ''
+      description: '',
+      picture: ''
     };
 
     this.getItemData = this.getItemData.bind(this);
@@ -18,27 +19,18 @@ class ItemDetail extends Component {
   }
 
   getItemData() {
-    console.log(this.state.id);
-    fetch('https://api.mercadolibre.com/items/' + this.state.id)
+    fetch(`/api/items/​${this.state.id}`)
     .then((response) => {
       return response.json()
     })
     .then((data) => {
       console.log(data);
-      this.setState({ item: data });
+      this.setState({
+        item: data.item,
+        description: data.description,
+        picture: data.picture
+      });
     })
-    .then(() => {
-      fetch('https://api.mercadolibre.com/items/' + this.state.id + '/description')
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        console.log(data);
-        this.setState({ description: data.plain_text });
-      })
-    })
-
-
     .catch((err) => {
       console.log('Response error:' + err.message);
     });
