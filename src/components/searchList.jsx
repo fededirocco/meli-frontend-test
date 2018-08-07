@@ -63,7 +63,7 @@ class SearchList extends Component {
 
       return (
         <div className='container'>
-          <div className='row category-item'>Categorias: {this.state.categories} </div>
+          <div className='row category-item'>{this.state.categories}</div>
           <div className='row justify-content-center backgroundWhite'>
             <div className='col-md-10'>
               {listItems}

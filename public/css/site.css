@@ -43,3 +43,49 @@ body {
   height: 180px;
   border-radius: 4px;
 }
+
+.title-item-detail {
+  font-size: 24px;
+  color: #333333;
+  margin-bottom: 32px;
+}
+
+.title-detail {
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+
+.title-description {
+  font-size: 28px;
+}
+
+.text-description {
+  font-size: 16px;
+  color: #999999;
+}
+
+.price-detail {
+  font-size: 46px;
+  margin-bottom: 32px;
+}
+
+.img-detail-item {
+  width: 680px;
+}
+
+.btn-comprar {
+  margin-right: 32px;
+}
+
+.btn-comprar > .btn-primary {
+    background-color: #3483FA;
+}
+
+.condition-quantity-item {
+  font-size: 14px;
+  color: #666666;
+}
+
+.padding-description {
+  padding-left: 32px;
+}

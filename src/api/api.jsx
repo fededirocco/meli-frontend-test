@@ -18,6 +18,8 @@ router.get('/items/:id', function(req, res) {
 router.get('/categories/:id', function(req, res) {
 	request('https://api.mercadolibre.com/categories/' + req.params.id, function (error, response, body) {
 		var categories = JSON.parse(response.body);
+		console.log(response.body);
+		console.log(categories);
 		res.json(categories);
 	});
 });
