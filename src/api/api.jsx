@@ -5,6 +5,21 @@ const detailItem = require('./detailItem.jsx');
 const listItems = require('./listItems.jsx');
 
 router.get('/items/:id', function(req, res) {
+	return getItemsResponse(req, res);
+});
+
+router.get('/items/:id/description', function(req, res) {
+	return getItemsResponse(req, res);
+});
+
+router.get('/items', function(req, res){
+	request('https://api.mercadolibre.com/sites/MLA/search?q=' + req.query.q, function (error, response, body) {
+		var itemsList = listItems.setItemList(JSON.parse(response.body));
+	 	res.json(itemsList);
+	});
+});
+
+function getItemsResponse(req, res) {
 	request('https://api.mercadolibre.com/items/' + req.params.id, function (error, response, body) {
 		var item = JSON.parse(response.body);
 
@@ -15,17 +30,11 @@ router.get('/items/:id', function(req, res) {
 				var categories = JSON.parse(response.body);
 
 				var itemDetails = detailItem.setItemDetails(item, description, categories.path_from_root);
-				res.json(itemDetails);
+				return res.json(itemDetails);
 			});
 		});
 	});
-});
+}
 
-router.get('/items', function(req, res){
-	request('https://api.mercadolibre.com/sites/MLA/search?q=' + req.query.q, function (error, response, body) {
-		var itemsList = listItems.setItemList(JSON.parse(response.body));
-	 	res.json(itemsList);
-	});
-});
 
 module.exports = router;
