@@ -12,18 +12,15 @@ exports.setItemList = function(search) {
 };
 
 function getCategories(search) {
-	var categoriesFilter = search.available_filters.find(function(filter) {
+	var categoriesFilter = search.available_filters.find((filter) => {
 		return filter.id === "category"
 	});
 
-	try {
-		var categories = categoriesFilter.values.map(function(category) {
-			return category.name;
-		});
+	const categories = categoriesFilter.values.map((category) => {
+		return category.name;
+	});
 
-		return categories;
-	}
-  catch(err) {}
+	return categories;
 }
 
 function getItems(search) {
