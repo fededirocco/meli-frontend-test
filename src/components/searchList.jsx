@@ -54,16 +54,21 @@ class SearchList extends Component {
   }
 
   render() {
-    const items = this.state.items;
-
+    var items = this.state.items;
     if (items.length > 0) {
       const listItems = items.map((item) => {
-        return(<Item key={item.id} item={item} />);
+        return(<Item key={item.id} item={item} price={item.price.amount} />);
       });
 
       return (
         <div className='container'>
-          <div className='row category-item'>{this.state.categories}</div>
+          <div className='row category-item'>
+            {
+              this.state.categories.slice(0,6).map(function(item, index) {
+                return <p key={index}> { (index ? ' > ' : '') + item } &nbsp;</p>;
+              })
+            }
+          </div>
           <div className='row justify-content-center backgroundWhite'>
             <div className='col-md-10'>
               {listItems}

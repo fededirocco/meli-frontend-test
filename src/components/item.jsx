@@ -8,7 +8,7 @@ class Item extends Component {
     this.state = {
       id: this.props.item.id,
       title: this.props.item.title,
-      price: '',
+      price: this.props.price,
       picture: this.props.item.picture,
       condition: this.props.item.condition,
       free_shipping: this.props.item.free_shipping,

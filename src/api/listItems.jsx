@@ -1,3 +1,5 @@
+const helper = require('./helpers.jsx');
+
 exports.setItemList = function(search) {
 	return {
 		"author": {
@@ -15,8 +17,8 @@ function getCategories(search) {
 	});
 
 	try {
-		var categories = categoriesFilter.values.map(function(cat) {
-			return cat.name;
+		var categories = categoriesFilter.values.map(function(category) {
+			return category.name;
 		});
 
 		return categories;
@@ -25,28 +27,24 @@ function getCategories(search) {
 }
 
 function getItems(search) {
-	var items = [];
+	var items = search.results.slice(0,4);
+	const listItems = items.map((item) => {
+		return(
+			{
+	      "id": item.id,
+	      "title": item.title,
+	      "price": {
+	  			"currency": item.currency_id,
+					"amount": helper.numberWithDotsHelper(item.price),
+					"decimals": item.decimals
+	      },
+	      "picture": item.thumbnail,
+	      "condition": helper.traduceConditionHelper(item.condition),
+	      "free_shipping": item.shipping.free_shipping,
+	      "location": item.address.state_name
+			}
+		);
+	});
 
-  //improve method with map
-	for(let i=0; i<4; i++) {
-		let currentItem = search.results[i];
-
-		var itemData = {
-      "id": currentItem.id,
-      "title": currentItem.title,
-      "price": {
-  			"currency": currentItem.currency_id,
-  			"amount":'',
-  			"decimals": ''
-      },
-      "picture": currentItem.thumbnail,
-      "condition": '',
-      "free_shipping": currentItem.shipping.free_shipping,
-      "location": currentItem.address.state_name
-		}
-
-		items.push(itemData);
-	}
-
-	return items;
+	return listItems;
 }

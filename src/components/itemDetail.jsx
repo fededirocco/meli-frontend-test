@@ -8,7 +8,8 @@ class ItemDetail extends Component {
     this.state = {
       id: this.props.match.params.id,
       item: '',
-      categories: ''
+      price: '',
+      categories: []
     };
 
     this.getItemData = this.getItemData.bind(this);
@@ -24,20 +25,11 @@ class ItemDetail extends Component {
       return response.json()
     })
     .then((data) => {
-      console.log(data);
       this.setState({
-        item: data.item
+        item: data.item,
+        price: data.item.price,
+        categories: data.item.categories
       });
-    })
-    .then(() => {
-      fetch(`/api/categories/​${this.state.id}`)
-      .then((response) => {
-        return response.json()
-      })
-      .then((data) => {
-        console.log(data);
-        this.setState({ categories: data });
-      })
     })
     .catch((err) => {
       console.log('Response error:' + err.message);
@@ -47,7 +39,13 @@ class ItemDetail extends Component {
   render() {
     return (
       <div className='container'>
-        <div className='row category-item'>{this.state.item.categories}</div>
+        <div className='row category-item'>
+          {
+            this.state.categories.slice(0,6).map(function(item, index) {
+              return <p key={index}> { (index ? ' > ' : '') + item.name } &nbsp;</p>;
+            })
+          }
+        </div>
         <div className='row justify-content-center backgroundWhite'>
           <div className='col-md-8'>
             <img src={this.state.item.picture} className='img-detail-item' />
@@ -55,7 +53,7 @@ class ItemDetail extends Component {
           <div className='col-md-4 title-detail'>
             <p className='condition-quantity-item'>{this.state.item.condition} - {this.state.item.sold_quantity} vendidos</p>
             <p className='title-item-detail'>{this.state.item.title}</p>
-            <p className='price-detail'>$ {this.state.price}</p>
+            <p className='price-detail'>$ {this.state.price.amount}</p>
             <div className='btn-comprar'>
               <Button bsStyle='primary' bsSize='large' block>Comprar</Button>
             </div>
