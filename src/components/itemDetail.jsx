@@ -52,7 +52,7 @@ class ItemDetail extends Component {
           </div>
           <div className='col-md-4 title-detail'>
             <p className='condition-quantity-item'>{this.state.item.condition} - {this.state.item.sold_quantity} vendidos</p>
-            <p className='title-item-detail'>{this.state.item.title}</p>
+            <p className='title-item-detail'><bold>{this.state.item.title}</bold></p>
             <p className='price-detail'>$ {this.state.price.amount}</p>
             <div className='btn-comprar'>
               <Button bsStyle='primary' bsSize='large' block>Comprar</Button>

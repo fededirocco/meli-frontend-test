@@ -19,7 +19,6 @@ class SearchBar extends Component {
   }
 
   handleSubmit(e) {
-    //alert('A search text was submitted: ' + this.state.value);
     e.preventDefault();
     this.props.onSubmit(this.state.value);
   }
@@ -27,22 +26,22 @@ class SearchBar extends Component {
   render() {
     return (
       <div className='container-fluid'>
-        <div className='row justify-content-center' style={{backgroundColor: '#FFE600'}}>
-          <div className='col-md-9'>
+        <div className='row justify-content-center searchbar'>
+          <div className='col-md-10'>
             <div className='row justify-content-center' style={{marginTop: '10px'}}>
               <div className='col-md-auto col-sm-auto'>
                 <img src='../img/Logo_ML.png' alt='MercadoLibre' />
               </div>
-              <div className='col-md-auto col-sm-auto'>
-                <form onSubmit={this.handleSubmit}>
+              <div className='col-md-10'>
+                <form className='searchbar-form' onSubmit={this.handleSubmit}>
                     <input
+                      className='searchbar-input'
                       type='text'
-                      size='50'
                       placeholder='Nunca dejes de buscar'
                       value={this.state.value}
                       onChange={this.handleChange}
                     />
-                  <button className='' type="submit" value="Submit">
+                  <button className='btn btn-search' type="submit" value="Submit">
                     <img src='../img/ic_Search.png' alt='MercadoLibreSearch' />
                   </button>
                 </form>
