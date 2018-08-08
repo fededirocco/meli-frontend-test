@@ -11,8 +11,12 @@
     "build": "webpack -p --display-error-details --color"
   },
   "jest": {
-    "setupFiles": ["./src/setupTests.js"],
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "setupFiles": [
+      "./src/setupTests.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "keywords": [],
   "author": "Federico Santiago Di Rocco",

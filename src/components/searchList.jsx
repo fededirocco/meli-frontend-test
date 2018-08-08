@@ -50,7 +50,6 @@ class SearchList extends Component {
   }
 
   render() {
-    console.log('render')
     var items = this.state.items;
 
     if (items.length > 0) {

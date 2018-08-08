@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-//const MLLogo = require('../img/Logo_ML.png');
-//const SearchIcon = require('../img/ic_Search.png');
-//import MLLogo from './img/Logo_ML.png';
-
 class SearchBar extends Component {
   constructor(props) {
     super(props);
