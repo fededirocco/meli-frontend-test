@@ -9,22 +9,18 @@ class SearchList extends Component {
     this.state = {
       search: '',
       categories: [],
-      items: [],
+      items: []
     };
 
     this.getItems = this.getItems.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     var searchQuery = this.props.location.search.split("=")[1];
 
     this.setState({ 'search': (searchQuery != null) ? searchQuery : '' }, () => {
       this.getItems();
     });
-  }
-
-  componentDidUpdate(prevProps) {
-
   }
 
   componentWillReceiveProps(nextProps) {
@@ -54,7 +50,9 @@ class SearchList extends Component {
   }
 
   render() {
+    console.log('render')
     var items = this.state.items;
+
     if (items.length > 0) {
       const listItems = items.map((item) => {
         return(<Item key={item.id} item={item} price={item.price.amount} />);

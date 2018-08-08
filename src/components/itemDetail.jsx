@@ -9,13 +9,14 @@ class ItemDetail extends Component {
       id: this.props.match.params.id,
       item: '',
       price: '',
-      categories: []
+      categories: [],
+      loading: true
     };
 
     this.getItemData = this.getItemData.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getItemData();
   }
 
@@ -28,7 +29,8 @@ class ItemDetail extends Component {
       this.setState({
         item: data.item,
         price: data.item.price,
-        categories: data.item.categories
+        categories: data.item.categories,
+        loading: false
       });
     })
     .catch((err) => {
@@ -37,36 +39,40 @@ class ItemDetail extends Component {
   }
 
   render() {
-    return (
-      <div className='container'>
-        <div className='row category-item'>
-          {
-            this.state.categories.slice(0,6).map(function(item, index) {
-              return <p key={index}> { (index ? ' > ' : '') + item.name } &nbsp;</p>;
-            })
-          }
-        </div>
-        <div className='row justify-content-center backgroundWhite'>
-          <div className='col-md-8'>
-            <img src={this.state.item.picture} className='img-detail-item' />
-          </div>
-          <div className='col-md-4 title-detail'>
-            <p className='condition-quantity-item'>{this.state.item.condition} - {this.state.item.sold_quantity} vendidos</p>
-            <p className='title-item-detail'><bold>{this.state.item.title}</bold></p>
-            <p className='price-detail'>$ {this.state.price.amount}</p>
-            <div className='btn-comprar'>
-              <Button bsStyle='primary' bsSize='large' block>Comprar</Button>
+      if (this.state.loading) {
+        return(<p>Loading...</p>);
+      } else {
+        return(
+          <div className='container'>
+            <div className='row category-item'>
+              {
+                this.state.categories.slice(0,6).map(function(item, index) {
+                  return <p key={index}> { (index ? ' > ' : '') + item.name } &nbsp;</p>;
+                })
+              }
+            </div>
+            <div className='row justify-content-center backgroundWhite'>
+              <div className='col-md-8'>
+                <img src={this.state.item.picture} className='img-detail-item' />
+              </div>
+              <div className='col-md-4 title-detail'>
+                <p className='condition-quantity-item'>{this.state.item.condition} - {this.state.item.sold_quantity} vendidos</p>
+                <p className='title-item-detail'><strong>{this.state.item.title}</strong></p>
+                <p className='price-detail'>$ {this.state.price.amount}</p>
+                <div className='btn-comprar'>
+                  <Button bsStyle='primary' bsSize='large' block>Comprar</Button>
+                </div>
+              </div>
+            </div>
+            <div className='row backgroundWhite padding-description'>
+              <div className='col-md-8'>
+                <p className='title-description'>Descripción del producto</p>
+                <p className='text-description'>{this.state.item.description}</p>
+              </div>
             </div>
           </div>
-        </div>
-        <div className='row backgroundWhite padding-description'>
-          <div className='col-md-8'>
-            <p className='title-description'>Descripción del producto</p>
-            <p className='text-description'>{this.state.item.description}</p>
-          </div>
-        </div>
-      </div>
-    );
+        );
+      }
   }
 }
 
