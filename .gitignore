@@ -62,3 +62,5 @@ typings/
 
 # Babel
 .babelrc
+
+/src/components/__snapshots__
